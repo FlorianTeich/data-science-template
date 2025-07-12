@@ -1,0 +1,42 @@
+[project]
+name = "{{ project_name }}"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">={{ python_version }}"
+dependencies = [
+    "pandas",
+    "polars",
+    "mlflow",
+    "scikit-learn",
+    "skrub",
+    "matplotlib",
+    "numpy",
+    "seaborn",
+    "plotly",
+    "ydata-profiling",
+    "networkx",
+    "sktime",
+    "streamlit",
+    "pyarrow",
+    "fastparquet",
+    "pygwalker",
+    "jupyter",
+    "frouros",
+    "pingouin",
+    "sentence_transformers",
+    "optuna",
+    "python-dotenv"
+]
+
+[project.optional-dependencies]
+tools = [
+  "rich",
+  "click",
+  "ruff",
+  "uv",
+  "ty",
+  "pytest",
+  "pre-commit",
+  "mkdocs"
+]
