@@ -4,7 +4,9 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">={{ python_version }}"
-dependencies = [
+
+[project.optional-dependencies]
+datascience = [
     "pandas",
     "polars",
     "mlflow",
@@ -40,3 +42,50 @@ tools = [
   "pre-commit",
   "mkdocs"
 ]
+
+[tool.ruff]
+# Set the maximum line length to 88.
+line-length = 88
+
+[tool.ruff.lint]
+extend-select = [
+  "UP",  # pyupgrade
+  "D",   # pydocstyle
+  "ERA", # eradicate
+  "S",   # flake8-bandit
+  "B",   # flake8-bugbear
+  "A",   # flake8-builtins
+  "COM", # flake8-commas
+  "C4",  # flake8-comprehensions
+  "DTZ", # flake8-datetimez
+  "FIX", # flake8-fixme
+  "ISC", # flake8-implicit-string-concatenation
+  "ICN", # flake8-import-conventions
+  "LOG", # flake8-logging
+  "G",   # flake8-logging-format
+  "T20", # flake8-print
+  "PT",  # flake8-pytest-style
+  "RET", # flake8-return
+  "SIM", # flake8-simplify
+  "TID", # flake8-tidy-imports
+  "TD",  # flake8-todos
+  "ARG", # flake8-unused-arguments
+  "PTH", # flake8-pathlib
+  "I",   # isort
+  "C90", # mccabe
+  "NPY", # numpy
+  "PD",  # pandas-vet
+  "N",   # PEP8-naming
+  "E",   # pycodestyle 
+  "W",   # pycodestyle
+  "P",   # pyflakes
+  "PL",  # pylint 
+  "FURB",# refurb
+  "RUF", # ruff
+  "TRY", # tryceratops
+]
+# Add the `line-too-long` rule to the enforced rule set.
+extend-select = ["E501"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
