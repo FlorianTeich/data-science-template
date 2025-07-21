@@ -1,6 +1,10 @@
 tests:
 	@echo "Running tests..."
-	uv run pytest --cov={{project_name}} --cov-report=xml --cov-report=html
+	uv run pytest tests
+
+coverage:
+	@echo "Running coverage..."
+	uv run pytest --cov={{project_name}} --cov-report=xml --cov-report=html tests
 
 lint:
 	@echo "Running linters..."
@@ -12,7 +16,7 @@ format:
 
 ty:
 	@echo "Type checking..."
-	uv run ty check {{project_name}}
+	uv run ty check {{project_name}} tests
 
 clean:
 	@echo "Cleaning up..."
@@ -27,7 +31,11 @@ docs_live:
 	uv run mkdocs build -f docs/mkdocs.yaml
 	uv run mkdocs serve -f docs/mkdocs.yaml
 
+mlflow:
+    @echo "Starting mlflow..."
+	uv run mlflow server
+
 install:
     @echo "Installing env..."
-	uv pip install ."[tools]"
+	uv pip install ."[tools,datascience,datascience_misc,plotting]"
 	uv pip install .

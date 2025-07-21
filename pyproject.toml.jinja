@@ -9,31 +9,34 @@ dependencies = []
 [tool.setuptools.packages.find]
 where = ["."]
 
-
 [project.optional-dependencies]
+plotting = [
+    "matplotlib",
+    "seaborn",
+    "plotly",
+]
 datascience = [
+    "jupyter",
+    "numpy",
+    "pyarrow",
+    "fastparquet",
     "pandas",
     "polars",
     "mlflow",
     "scikit-learn",
     "skrub",
-    "matplotlib",
-    "numpy",
-    "seaborn",
-    "plotly",
+    "optuna",
+    "python-dotenv",
+]
+datascience_misc = [
     "ydata-profiling",
     "networkx",
     "sktime",
     "streamlit",
-    "pyarrow",
-    "fastparquet",
     "pygwalker",
-    "jupyter",
     "frouros",
     "pingouin",
     "sentence_transformers",
-    "optuna",
-    "python-dotenv"
 ]
 tools = [
   "rich",
@@ -42,6 +45,7 @@ tools = [
   "uv",
   "ty",
   "pytest",
+  "pytest-cov",
   "pre-commit",
   "mkdocs",
   "mkdocstrings-python",
