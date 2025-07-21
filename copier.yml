@@ -12,7 +12,6 @@ python_version:
     default: 3.11
     help: What Python version does your project use?
     choices:
-        - 3.13
         - 3.12
         - 3.11
         - 3.10

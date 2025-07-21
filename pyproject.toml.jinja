@@ -9,6 +9,7 @@ dependencies = []
 [tool.setuptools.packages.find]
 where = ["."]
 
+
 [project.optional-dependencies]
 datascience = [
     "pandas",
@@ -34,8 +35,6 @@ datascience = [
     "optuna",
     "python-dotenv"
 ]
-
-[project.optional-dependencies]
 tools = [
   "rich",
   "click",
@@ -90,8 +89,6 @@ extend-select = [
   "RUF", # ruff
   "TRY", # tryceratops
 ]
-# Add the `line-too-long` rule to the enforced rule set.
-extend-select = ["E501"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
