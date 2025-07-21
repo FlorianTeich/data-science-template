@@ -1,0 +1,19 @@
+make tests
+	@echo "Running tests..."
+	pytest --cov={{project_name}} --cov-report=xml --cov-report=html
+
+make lint
+	@echo "Running linters..."
+	uv run ruff check {{project_name}} tests
+
+make format
+	@echo "Formatting code..."
+	uv run ruff format {{project_name}} tests
+
+make clean
+	@echo "Cleaning up..."
+	rm -rf .pytest_cache .coverage htmlcov coverage.xml
+
+make docs
+	@echo "Building documentation..."
+	uv run mkdocs build

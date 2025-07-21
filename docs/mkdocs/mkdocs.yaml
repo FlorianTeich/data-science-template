@@ -1,4 +1,0 @@
-site_name: {{ project_name }}
-# {% if author %}
-site_author: {{ author }}
-# {% endif %}
