@@ -1,14 +1,18 @@
 tests:
 	@echo "Running tests..."
-	pytest --cov=funfunfun --cov-report=xml --cov-report=html
+	uv run pytest --cov={{project_name}} --cov-report=xml --cov-report=html
 
 lint:
 	@echo "Running linters..."
-	uv run ruff check funfunfun tests
+	uv run ruff check {{project_name}} tests
 
 format:
 	@echo "Formatting code..."
-	uv run ruff format funfunfun tests
+	uv run ruff format {{project_name}} tests
+
+ty:
+	@echo "Type checking..."
+	uv run ty check {{project_name}}
 
 clean:
 	@echo "Cleaning up..."
@@ -16,4 +20,14 @@ clean:
 
 docs:
 	@echo "Building documentation..."
-	uv run mkdocs build
+	uv run mkdocs build -f docs/mkdocs.yaml
+
+docs_live:
+	@echo "Building documentation..."
+	uv run mkdocs build -f docs/mkdocs.yaml
+	uv run mkdocs serve -f docs/mkdocs.yaml
+
+install:
+    @echo "Installing env..."
+	uv pip install ."[tools]"
+	uv pip install .
