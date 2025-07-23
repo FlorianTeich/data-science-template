@@ -8,7 +8,7 @@ git clone https://github.com/FlorianTeich/data-science-template.git
 
 # Install copier
 ```
-uv install copier
+uv tool install copier
 ```
 
 # Create a new project
