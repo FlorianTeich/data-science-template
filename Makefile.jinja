@@ -46,4 +46,8 @@ deps:
 
 sbom:
 	@echo "Creating SBOM..."
-	uv run cyclonedx-py -e --format json -o sbom.json
+	uv run cyclonedx-py env -o sbom.json
+
+audit:
+	@echo "Auditing dependencies..."
+	uv run pip-audit

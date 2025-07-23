@@ -51,6 +51,7 @@ tools = [
   "mkdocs-material",
   "deptry",
   "cyclonedx-bom",
+  "pip-audit",
   "opentelemetry-distro",
   "python-dotenv",
 ]
@@ -60,6 +61,9 @@ tools = [
 line-length = 88
 
 [tool.ruff.lint]
+ignore = [
+  "COM812",  # missing-trailing-comma
+]
 extend-select = [
   "UP",  # pyupgrade
   "D",   # pydocstyle
