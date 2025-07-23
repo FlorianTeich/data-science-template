@@ -32,10 +32,18 @@ docs_live:
 	uv run mkdocs serve -f docs/mkdocs.yaml
 
 mlflow:
-    @echo "Starting mlflow..."
+	@echo "Starting mlflow..."
 	uv run mlflow server
 
 install:
-    @echo "Installing env..."
+	@echo "Installing env..."
 	uv pip install ."[tools,datascience,datascience_misc,plotting]"
 	uv pip install .
+
+deps:
+	@echo "Inspect dependencies..."
+	uv run deptry .
+
+sbom:
+	@echo "Creating SBOM..."
+	uv run cyclonedx-py -e --format json -o sbom.json

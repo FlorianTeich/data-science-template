@@ -19,6 +19,5 @@ copier copy data-science-template destination
 # Installation of project
 
 ```
-uv pip install ".[datascience]"
-uv pip install -e .
+make install
 ```
