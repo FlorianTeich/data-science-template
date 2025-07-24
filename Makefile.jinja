@@ -1,10 +1,14 @@
+.PHONY: tests coverage lint format ty clean docs docs_live mlflow install deps sbom audit
+
 tests:
 	@echo "Running tests..."
 	uv run pytest tests
 
 coverage:
 	@echo "Running coverage..."
-	uv run pytest --cov={{project_name}} --cov-report=xml --cov-report=html tests
+	uv run coverage run -m pytest tests
+	uv run coverage html
+	uv run coverage report -m
 
 lint:
 	@echo "Running linters..."
