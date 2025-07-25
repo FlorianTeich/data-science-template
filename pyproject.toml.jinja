@@ -26,16 +26,47 @@ datascience = [
     "scikit-learn",
     "skrub",
     "optuna",
+    "tqdm",
+    "tabular",
+]
+pyspark=[
+  "pyspark",
+  "findspark",
+]
+causal_ml=[
+  "econml",
+  "pymc",
+]
+explainability=[
+  "shap",
+  "captum",
+]
+reinforcement_learning=[
+  "stable-baselines3[extra]",
+]
+timeseries_forecasting=[
+  "sktime",
+]
+graph_neural_networks=[
+  "pytorch_geometric",
+]
+drift_detection=[
+  "frouros",
+]
+nlp=[
+  "sentence_transformers",
+  "transformers",
+  "tokenizers",
+  "evaluate",
 ]
 datascience_misc = [
     "ydata-profiling",
     "networkx",
-    "sktime",
     "streamlit",
     "pygwalker",
-    "frouros",
     "pingouin",
-    "sentence_transformers",
+    "statsmodels",
+    "datasets",
 ]
 tools = [
   "rich",
@@ -54,6 +85,10 @@ tools = [
   "pip-audit",
   "opentelemetry-distro",
   "python-dotenv",
+  "psutil",
+  "pynvml",
+  "textual",
+  "mutmut",
 ]
 
 [tool.ruff]

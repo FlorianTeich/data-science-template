@@ -4,6 +4,11 @@ tests:
 	@echo "Running tests..."
 	uv run pytest tests
 
+mutations:
+	@echo "Running mutation tests..."
+	uv run mutmut run
+	uv run mutmut browse
+
 coverage:
 	@echo "Running coverage..."
 	uv run coverage run -m pytest tests
