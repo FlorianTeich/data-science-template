@@ -1,0 +1,13 @@
+services:
+  {{ project_name }}:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: {{ project_name }}
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      - ENV=development
+    command: uv run main.py

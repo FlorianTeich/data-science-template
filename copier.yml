@@ -20,3 +20,7 @@ author:
     type: str
     default: "Your Name"
     help: Who is the author of the project?
+
+mail_address:
+    type: str
+    help: What is the author's email address?

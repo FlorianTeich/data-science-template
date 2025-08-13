@@ -1,0 +1,100 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    // Build image from local Dockerfile
+                    dockerImage = docker.build("{{ project_name }}-ci", "-f Dockerfile .")
+                }
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    dockerImage.inside {
+                        sh 'make install'
+                    }
+                }
+            }
+        }
+
+        stage('Run CI Tasks') {
+            parallel {
+                stage('Run Linter') {
+                    steps {
+                        script {
+                            dockerImage.inside {
+                                sh 'make lint'
+                            }
+                        }
+                    }
+                }
+                stage('Run static type checker') {
+                    steps {
+                        script {
+                            dockerImage.inside {
+                                sh 'make ty'
+                            }
+                        }
+                    }
+                }
+                stage('Run Tests') {
+                    steps {
+                        script {
+                            dockerImage.inside {
+                                sh 'make tests'
+                            }
+                        }
+                    }
+                }
+                stage('Run Coverage') {
+                    steps {
+                        script {
+                            dockerImage.inside {
+                                sh 'make coverage'
+                            }
+                        }
+                    }
+                }
+                stage('Generate Docs') {
+                    steps {
+                        script {
+                            dockerImage.inside {
+                                sh 'make docs'
+                            }
+                        }
+                    }
+                }
+                stage('Generate SBOM') {
+                    steps {
+                        script {
+                            dockerImage.inside {
+                                sh 'make sbom'
+                            }
+                        }
+                    }
+                }
+                stage('Check deps') {
+                    steps {
+                        script {
+                            dockerImage.inside {
+                                sh 'make deps'
+                            }
+                        }
+                    }
+                }
+                stage('Generate audit report') {
+                    steps {
+                        script {
+                            dockerImage.inside {
+                                sh 'make audit'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

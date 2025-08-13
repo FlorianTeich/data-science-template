@@ -48,6 +48,7 @@ install:
 	@echo "Installing env..."
 	uv pip install ."[tools,datascience,datascience_misc,plotting]"
 	uv pip install .
+	uv run pre-commit install
 
 deps:
 	@echo "Inspect dependencies..."
