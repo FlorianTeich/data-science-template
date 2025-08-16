@@ -4,7 +4,26 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">={{ python_version }}"
-dependencies = []
+authors = [
+  {name = "{{author}}", email = "{{mail_address}}"},
+]
+maintainers = [
+  {name = "{{author}}", email = "{{mail_address}}"}
+]
+description = ""
+license = "MIT"
+license-files = ["LICEN[CS]E.*"]
+keywords = [""]
+classifiers = [
+  "Development Status :: Beta",
+  "Programming Language :: Python"
+]
+dependencies = [
+    "lib-a"
+]
+
+[tool.uv.sources]
+lib-a = { path = "./lib_a", editable = true }
 
 [tool.setuptools.packages.find]
 where = ["."]
