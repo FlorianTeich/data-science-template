@@ -46,8 +46,10 @@ mlflow:
 
 install:
 	@echo "Installing env..."
+	uv venv
 	uv pip install ."[tools,datascience,datascience_misc,plotting]"
 	uv pip install .
+	uv sync
 	uv run pre-commit install
 
 deps:
