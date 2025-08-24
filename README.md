@@ -1,23 +1,68 @@
-# data-science-template
+# 🌱 data-science-template
 
-# Clone the repo
+## 🎁 Features
+
+- organizational stuff
+  - license
+  - citation
+  - contribution
+  - code of conduct
+  - changelog
+  - security
+- development quality of life
+  - pre-commit
+  - makefile
+  - env file
+  - dockerignore
+  - gitignore
+  - vscode settings
+- good folder structure
+- dependency management using uv
+- linting
+- formating
+- type checking
+- auditing dependencies
+- inspecting dependencies
+- creating sboms
+- tests
+  - unittests
+  - coverage
+  - mutationtesting
+- docs
+- CI/CD
+  - Jenkinsfile
+  - Dockerfile
+  - docker-compose file
+
+## 🤲 Setup
+
+> [!TIP]
+> You should first [install uv](https://docs.astral.sh/uv/getting-started/installation/) to be able to run the commands below.
+
+### Clone the repo
 
 ```
 git clone https://github.com/FlorianTeich/data-science-template.git
 ```
 
-# Install copier
+### Install copier
 ```
 uv tool install copier
 ```
 
-# Create a new project
+### Create a new project
 ```
-copier copy data-science-template destination
+uvx copier copy data-science-template destination
 ```
 
-# Installation of project
+### Installation of project
 
 ```
 make install
 ```
+
+## 🐘 Conventions to use
+
+- Conventional Commit
+- Semantic Versioning
+- Google Style Docstrings
