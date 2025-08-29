@@ -51,11 +51,13 @@ git clone https://github.com/FlorianTeich/data-science-template.git
 ```
 
 ### Install copier
+
 ```
 uv tool install copier
 ```
 
 ### Create a new project
+
 ```
 uvx copier copy data-science-template destination
 ```

@@ -40,8 +40,13 @@ lint:
 	fi
 
 format:
-	@echo "Formatting code..."
+	@echo "Formatting..."
 	uv run ruff format {{project_name}} tests
+	if command -v prettier >/dev/null 2>&1; then
+	    npx prettier . --write
+	else
+	    echo "Skipping prettier..."
+	fi
 
 ty:
 	@echo "Type checking..."
