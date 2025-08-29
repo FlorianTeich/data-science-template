@@ -18,6 +18,26 @@ coverage:
 lint:
 	@echo "Running linters..."
 	uv run ruff check {{project_name}} tests
+	if command -v hadolint >/dev/null 2>&1; then
+	    hadolint Dockerfile
+	else
+	    echo "Skipping hadolint..."
+	fi
+	if command -v dotenv-linter >/dev/null 2>&1; then
+	    dotenv-linter
+	else
+	    echo "Skipping dotenv-linter..."
+	fi
+	if command -v dclint >/dev/null 2>&1; then
+	    dclint
+	else
+	    echo "Skipping dclint..."
+	fi
+	if command -v checkov >/dev/null 2>&1; then
+	    checkov --deployment-manifests
+	else
+	    echo "Skipping checkov..."
+	fi
 
 format:
 	@echo "Formatting code..."
