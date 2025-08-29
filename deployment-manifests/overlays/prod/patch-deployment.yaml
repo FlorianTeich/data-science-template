@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+  namespace: my-app
+spec:
+  replicas: 3
+  template:
+    spec:
+      containers:
+      - name: my-app
+        image: my-app@sha256:3333333333333333333333333333333333333333333333333333333333333333
+        resources:
+          requests:
+            cpu: "500m"
+            memory: "512Mi"
+          limits:
+            cpu: "1"
+            memory: "1Gi"

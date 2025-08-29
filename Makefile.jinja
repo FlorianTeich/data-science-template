@@ -18,6 +18,11 @@ coverage:
 lint:
 	@echo "Running linters..."
 	uv run ruff check {{project_name}} tests
+	if command -v prettier >/dev/null 2>&1; then
+	    npx prettier . --check
+	else
+	    echo "Skipping prettier..."
+	fi
 	if command -v hadolint >/dev/null 2>&1; then
 	    hadolint Dockerfile
 	else
