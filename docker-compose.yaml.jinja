@@ -1,37 +1,35 @@
+name: {{ project_name }}
+
 services:
+  mlflow:
+    image: "ghcr.io/mlflow/mlflow:3.3.2"
+    volumes:
+      - ./mlflow.db:/mlflow/mlflow.db
+      - ./mlruns:/mlflow/mlruns
+    ports:
+      - '127.0.0.1:5000:5000'
+    networks:
+      - appnet
+    command: >
+      mlflow server  --backend-store-uri sqlite:///mlflow/mlflow.db  --default-artifact-root /mlflow/mlruns  --host 0.0.0.0  --port 5000
+
   {{ project_name }}:
     build:
       context: .
       dockerfile: Dockerfile
     container_name: {{ project_name }}
-    ports:
-      - "8000:8000"
     volumes:
       - .:/app
+    environment:
+      - ENV=development
     env_file:
       - .env
       - .env.docker
-    environment:
-      - ENV=development
+    ports:
+      - '127.0.0.1:8000:8000'
     networks:
       - appnet
     command: uv run main.py
-
-  mlflow:
-    image: "ghcr.io/mlflow/mlflow"
-    ports:
-      - "5000:5000"
-    volumes:
-      - ./mlflow.db:/mlflow/mlflow.db
-      - ./mlruns:/mlflow/mlruns
-    networks:
-      - appnet
-    command: >
-      mlflow server 
-      --backend-store-uri sqlite:///mlflow/mlflow.db 
-      --default-artifact-root /mlflow/mlruns 
-      --host 0.0.0.0 
-      --port 5000
 
 networks:
   appnet:

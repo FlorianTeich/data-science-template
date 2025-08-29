@@ -19,6 +19,11 @@
 - good folder structure
 - dependency management using uv
 - linting
+  - env
+  - dockerfile
+  - docker-compose
+  - python
+  - kubernetes-manifests
 - formating
 - type checking
 - auditing dependencies

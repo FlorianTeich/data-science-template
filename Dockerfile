@@ -2,7 +2,7 @@ FROM python:3.13-alpine3.22
 COPY --from=ghcr.io/astral-sh/uv:0.8.9 /uv /uvx /bin/
 
 # Copy the project into the image
-ADD . /app
+COPY . /app
 
 # Sync the project into a new environment, asserting the lockfile is up to date
 WORKDIR /app
