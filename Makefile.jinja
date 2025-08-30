@@ -1,90 +1,103 @@
-.PHONY: tests coverage lint format ty clean docs docs_live mlflow install deps sbom audit
+.PHONY: tests coverage lint format ty clean docs docs_live mlflow install deps sbom audit docker docker_compose
 
 tests:
 	@echo "Running tests..."
-	uv run pytest tests
+	@uv run pytest tests
 
 mutations:
 	@echo "Running mutation tests..."
-	uv run mutmut run
-	uv run mutmut browse
+	@uv run mutmut run
+	@uv run mutmut browse
 
 coverage:
 	@echo "Running coverage..."
-	uv run coverage run -m pytest tests
-	uv run coverage html
-	uv run coverage report -m
+	@uv run coverage run -m pytest tests
+	@uv run coverage html
+	@uv run coverage report -m
 
 lint:
 	@echo "Running linters..."
-	uv run ruff check {{project_name}} tests
-	if command -v hadolint >/dev/null 2>&1; then
-	    hadolint Dockerfile
-	else
-	    echo "Skipping hadolint..."
+	@uv run ruff check {{project_name}} tests
+	@if command -v prettier >/dev/null 2>&1; then \
+	    npx prettier . --check; \
+	else \
+	    echo "Skipping prettier..."; \
 	fi
-	if command -v dotenv-linter >/dev/null 2>&1; then
-	    dotenv-linter
-	else
-	    echo "Skipping dotenv-linter..."
+	@if command -v hadolint >/dev/null 2>&1; then \
+	    hadolint Dockerfile; \
+	else \
+	    echo "Skipping hadolint..."; \
 	fi
-	if command -v dclint >/dev/null 2>&1; then
-	    dclint
-	else
-	    echo "Skipping dclint..."
+	@if command -v dotenv-linter >/dev/null 2>&1; then \
+	    dotenv-linter; \
+	else \
+	    echo "Skipping dotenv-linter..."; \
 	fi
-	if command -v checkov >/dev/null 2>&1; then
-	    checkov --deployment-manifests
-	else
-	    echo "Skipping checkov..."
+	@if command -v dclint >/dev/null 2>&1; then \
+	    dclint; \
+	else \
+	    echo "Skipping dclint..."; \
+	fi
+	@if command -v checkov >/dev/null 2>&1; then \
+	    checkov --deployment-manifests; \
+	else \
+	    echo "Skipping checkov..."; \
 	fi
 
 format:
 	@echo "Formatting..."
-	uv run ruff format {{project_name}} tests
-	if command -v prettier >/dev/null 2>&1; then
-	    npx prettier . --write
-	else
-	    echo "Skipping prettier..."
+	@uv run ruff format {{project_name}} tests
+	@if command -v prettier >/dev/null 2>&1; then \
+	    npx prettier . --write; \
+	else \
+	    echo "Skipping prettier..."; \
 	fi
 
 ty:
 	@echo "Type checking..."
-	uv run ty check {{project_name}} tests
+	@uv run ty check {{project_name}} tests
 
 clean:
 	@echo "Cleaning up..."
-	rm -rf .pytest_cache .coverage htmlcov coverage.xml
+	@rm -rf .pytest_cache .coverage htmlcov coverage.xml
 
 docs:
 	@echo "Building documentation..."
-	uv run mkdocs build -f docs/mkdocs.yaml
+	@uv run mkdocs build -f docs/mkdocs.yaml
 
 docs_live:
 	@echo "Building documentation..."
-	uv run mkdocs build -f docs/mkdocs.yaml
-	uv run mkdocs serve -f docs/mkdocs.yaml
+	@uv run mkdocs build -f docs/mkdocs.yaml
+	@uv run mkdocs serve -f docs/mkdocs.yaml
 
 mlflow:
 	@echo "Starting mlflow..."
-	uv run mlflow server
+	@uv run mlflow server
 
 install:
 	@echo "Installing env..."
-	uv venv
-	uv pip install ."[tools,datascience,datascience_misc,plotting]"
-	uv pip install .
-	uv sync
-	uv run pre-commit install
+	@uv venv
+	@uv pip install ."[tools,datascience,datascience_misc,plotting]"
+	@uv pip install .
+	@uv sync
+	@uv run pre-commit install
 
 deps:
 	@echo "Inspect dependencies..."
-	uv run deptry .
+	@uv run deptry .
 
 sbom:
 	@echo "Creating SBOM..."
-	uv run cyclonedx-py env -o sbom.json
+	@uv run cyclonedx-py env -o sbom.json
 
 audit:
 	@echo "Auditing dependencies..."
-	uv run pip-audit
+	@uv run pip-audit
+
+docker:
+    @echo "Building docker image...."
+	@docker build -t {{ project_name }} .
+
+docker_compose
+    @echo "Starting Containers..."
+	@docker compose up
