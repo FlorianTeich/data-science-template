@@ -18,102 +18,96 @@ classifiers = [
   "Programming Language :: Python"
 ]
 dependencies = [
-    "lib-a"
+  "fastapi",
+  "lib-a",
+  "uvicorn[standard]",
 ]
-
-[tool.uv.sources]
-lib-a = { path = "./lib_a", editable = true }
-
-[tool.setuptools.packages.find]
-where = ["."]
-
-[project.optional-dependencies]
-plotting = [
-    "matplotlib",
-    "seaborn",
-    "plotly",
+optional-dependencies.datascience = [
+  "fastparquet",
+  "jupyter",
+  "mlflow",
+  "numpy",
+  "optuna",
+  "pandas",
+  "polars",
+  "pyarrow",
+  "scikit-learn",
+  "skrub",
+  "tqdm",
+  #"tabular",
 ]
-datascience = [
-    "jupyter",
-    "numpy",
-    "pyarrow",
-    "fastparquet",
-    "pandas",
-    "polars",
-    "mlflow",
-    "scikit-learn",
-    "skrub",
-    "optuna",
-    "tqdm",
-]
-tools = [
-  "rich",
+optional-dependencies.tools = [
   "click",
-  "ruff",
-  "uv",
-  "ty",
-  "pytest",
   "coverage",
-  "pre-commit",
-  "mkdocs",
-  "mkdocstrings-python",
-  "mkdocs-material",
-  "mkdocs-jupyter",
-  "deptry",
   "cyclonedx-bom",
-  "pip-audit[cyclonedx]",
+  "cyclonedx-python-lib",
+  "deptry",
+  "mkdocs",
+  "mkdocs-jupyter",
+  "mkdocs-material",
+  "mkdocstrings-python",
+  "mutmut",
   "opentelemetry-distro",
-  "python-dotenv",
+  "pip-audit",
+  "pre-commit",
   "psutil",
   "pynvml",
+  "pytest",
+  "python-dotenv",
+  "rich",
+  "ruff",
   "textual",
-  "mutmut",
+  "ty",
+  "uv",
 ]
+
+[tool.setuptools.packages.find]
+where = [ "." ]
 
 [tool.ruff]
 # Set the maximum line length to 88.
 line-length = 88
 
-[tool.ruff.lint]
-ignore = [
-  "COM812",  # missing-trailing-comma
+lint.extend-select = [
+  "A",    # flake8-builtins
+  "ARG",  # flake8-unused-arguments
+  "B",    # flake8-bugbear
+  "C4",   # flake8-comprehensions
+  "C90",  # mccabe
+  "COM",  # flake8-commas
+  "D",    # pydocstyle
+  "DTZ",  # flake8-datetimez
+  "E",    # pycodestyle 
+  "ERA",  # eradicate
+  "F",    # pyflakes
+  "FIX",  # flake8-fixme
+  "FURB", # refurb
+  "G",    # flake8-logging-format
+  "I",    # isort
+  "ICN",  # flake8-import-conventions
+  "ISC",  # flake8-implicit-string-concatenation
+  "LOG",  # flake8-logging
+  "N",    # PEP8-naming
+  "NPY",  # numpy
+  "PD",   # pandas-vet
+  "PL",   # pylint 
+  "PT",   # flake8-pytest-style
+  "PTH",  # flake8-pathlib
+  "RET",  # flake8-return
+  "RUF",  # ruff
+  "S",    # flake8-bandit
+  "SIM",  # flake8-simplify
+  "T20",  # flake8-print
+  "TD",   # flake8-todos
+  "TID",  # flake8-tidy-imports
+  "TRY",  # tryceratops
+  "UP",   # pyupgrade
+  "W",    # pycodestyle
 ]
-extend-select = [
-  "UP",  # pyupgrade
-  "D",   # pydocstyle
-  "ERA", # eradicate
-  "S",   # flake8-bandit
-  "B",   # flake8-bugbear
-  "A",   # flake8-builtins
-  "COM", # flake8-commas
-  "C4",  # flake8-comprehensions
-  "DTZ", # flake8-datetimez
-  "FIX", # flake8-fixme
-  "ISC", # flake8-implicit-string-concatenation
-  "ICN", # flake8-import-conventions
-  "LOG", # flake8-logging
-  "G",   # flake8-logging-format
-  "T20", # flake8-print
-  "PT",  # flake8-pytest-style
-  "RET", # flake8-return
-  "SIM", # flake8-simplify
-  "TID", # flake8-tidy-imports
-  "TD",  # flake8-todos
-  "ARG", # flake8-unused-arguments
-  "PTH", # flake8-pathlib
-  "I",   # isort
-  "C90", # mccabe
-  "NPY", # numpy
-  "PD",  # pandas-vet
-  "N",   # PEP8-naming
-  "E",   # pycodestyle 
-  "W",   # pycodestyle
-  "F",   # pyflakes
-  "PL",  # pylint 
-  "FURB",# refurb
-  "RUF", # ruff
-  "TRY", # tryceratops
+lint.ignore = [
+  "COM812", # missing-trailing-comma
 ]
+lint.pydocstyle.convention = "google"
 
-[tool.ruff.lint.pydocstyle]
-convention = "google"
+[tool.uv.sources]
+lib-a = { path = "./lib_a", editable = true }
