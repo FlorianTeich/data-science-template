@@ -59,7 +59,7 @@ ty:
 
 clean:
 	@echo "Cleaning up..."
-	@rm -rf .pytest_cache .coverage htmlcov coverage.xml
+	@rm -rf .pytest_cache .coverage htmlcov coverage.xml 
 
 docs:
 	@echo "Building documentation..."
@@ -77,10 +77,7 @@ mlflow:
 install:
 	@echo "Installing env..."
 	@uv venv
-	@uv pip install ."[tools,datascience,datascience_misc,plotting]"
-	@uv pip install .
-	@uv sync
-	@uv run pre-commit install
+	@uv pip install ."[tools,datascience]"
 
 deps:
 	@echo "Inspect dependencies..."
@@ -95,9 +92,9 @@ audit:
 	@uv run pip-audit
 
 docker:
-    @echo "Building docker image...."
+	@echo "Building docker image...."
 	@docker build -t {{ project_name }} .
 
-docker_compose
-    @echo "Starting Containers..."
+docker_compose:
+	@echo "Starting Containers..."
 	@docker compose up

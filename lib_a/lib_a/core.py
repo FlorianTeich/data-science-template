@@ -1,10 +1,9 @@
-"""
-Core functionality for lib_a package
-"""
+"""Core functionality for lib_a package."""
+
 
 def hello_world():
-    """A simple hello world function
-    
+    """A simple hello world function.
+
     Returns:
         str: A greeting message
     """

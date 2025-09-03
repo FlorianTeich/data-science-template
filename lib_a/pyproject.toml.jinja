@@ -1,0 +1,20 @@
+[build-system]
+requires = ["uv_build>=0.8.15,<0.9.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "lib_a"
+module-root = ""
+
+[project]
+name = "lib-a"
+version = "0.1.0"
+description = "A local Python package"
+authors = [{name = "{{author}}", email = "{{mail_address}}"}]
+dependencies = []
+
+[project.urls]
+Homepage = ""
+
+[tool.hatch.build.targets.wheel]
+packages = ["lib_a"]

@@ -5,6 +5,7 @@ import logging
 
 from lib_a import hello_world
 
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
