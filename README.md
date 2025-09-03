@@ -2,42 +2,42 @@
 
 ## 🎁 Features
 
-- organizational stuff
-  - license
-  - citation
-  - contribution
-  - code of conduct
-  - changelog
-  - security
-- development quality of life
-  - pre-commit
-  - makefile
-  - env file
-  - dockerignore
-  - gitignore
-  - vscode settings
-- good folder structure
-- dependency management using uv
-- linting
-  - env
-  - dockerfile
-  - docker-compose
-  - python
-  - kubernetes-manifests
-- formating
-- type checking
-- auditing dependencies
-- inspecting dependencies
-- creating sboms
-- tests
-  - unittests
-  - coverage
-  - mutationtesting
-- docs
-- CI/CD
-  - Jenkinsfile
-  - Dockerfile
-  - docker-compose file
+- Organizational Documentation
+  - ⚖️ License
+  - 🧾 Citation
+  - 🤝 Contribution
+  - 📜 Code of Conduct
+  - 📝 Changelog
+  - 🛡️ Security
+- 🛠️ Development Quality of Life
+  - 🪝 pre-commit
+  - 🏗️ Makefile
+  - 🧾 Env File
+  - 🚫 .dockerignore
+  - 🚫 .gitignore
+  - ⚙️ VS Ccode Settings
+- 📁 Good Folder Structure
+- 📦 Dependency management using uv
+- 🔍 linting
+  - 🧾 Env
+  - 🐋 Dockerfile
+  - 🛳️ docker-compose
+  - 🐍 Python
+  - ☸️ Kubernetes Manifests
+- ✨ Formating
+- 📐 Type Checking
+- 🔎 Auditing Dependencies
+- 🧾 Inspecting Dependencies
+- 🪪 Creating SBOMs
+- 🧪 tests
+  - 🧩 Unittests
+  - 📊 Coverage
+  - 🧬 Mutation Testing
+- 📚 Documentation
+- 🚀 CI/CD
+  - 📝 Jenkinsfile
+  - 🐳 Dockerfile
+  - 🛳️ docker-compose file
 
 ## 🤲 Setup
 
