@@ -98,3 +98,7 @@ docker:
 docker_compose:
 	@echo "Starting Containers..."
 	@docker compose up
+
+stubs:
+    @echo "Creating stubs..."
+	@uv run pyright --createstub lib_a
