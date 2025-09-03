@@ -1,22 +1,22 @@
-.PHONY: tests coverage lint format ty clean docs docs_live mlflow install deps sbom audit docker docker_compose
+.PHONY: tests coverage lint format ty clean docs docs_live mlflow install deps sbom audit docker docker_compose stubs
 
 tests:
-	@echo "Running tests..."
+	@echo "🧪 Running tests..."
 	@uv run pytest tests
 
 mutations:
-	@echo "Running mutation tests..."
+	@echo "🧬 Running mutation tests..."
 	@uv run mutmut run
 	@uv run mutmut browse
 
 coverage:
-	@echo "Running coverage..."
+	@echo "📊 Running coverage..."
 	@uv run coverage run -m pytest tests
 	@uv run coverage html
 	@uv run coverage report -m
 
 lint:
-	@echo "Running linters..."
+	@echo "🔍 Running linters..."
 	@uv run ruff check {{project_name}} tests
 	@if command -v prettier >/dev/null 2>&1; then \
 	    npx prettier . --check; \
@@ -45,7 +45,7 @@ lint:
 	fi
 
 format:
-	@echo "Formatting..."
+	@echo "✨ Formatting..."
 	@uv run ruff format {{project_name}} tests
 	@if command -v prettier >/dev/null 2>&1; then \
 	    npx prettier . --write; \
@@ -54,51 +54,51 @@ format:
 	fi
 
 ty:
-	@echo "Type checking..."
+	@echo "📐 Type checking..."
 	@uv run ty check {{project_name}} tests
 
 clean:
-	@echo "Cleaning up..."
+	@echo "🧹 Cleaning up..."
 	@rm -rf .pytest_cache .coverage htmlcov coverage.xml 
 
 docs:
-	@echo "Building documentation..."
+	@echo "📚 Building documentation..."
 	@uv run mkdocs build -f docs/mkdocs.yaml
 
 docs_live:
-	@echo "Building documentation..."
+	@echo "📖 Building documentation..."
 	@uv run mkdocs build -f docs/mkdocs.yaml
 	@uv run mkdocs serve -f docs/mkdocs.yaml
 
 mlflow:
-	@echo "Starting mlflow..."
+	@echo "📈 Starting mlflow..."
 	@uv run mlflow server
 
 install:
-	@echo "Installing env..."
+	@echo "📦 Installing env..."
 	@uv venv
 	@uv pip install ."[tools,datascience]"
 
 deps:
-	@echo "Inspect dependencies..."
+	@echo "🧾 Inspect dependencies..."
 	@uv run deptry .
 
 sbom:
-	@echo "Creating SBOM..."
+	@echo "🪪 Creating SBOM..."
 	@uv run cyclonedx-py env -o sbom.json
 
 audit:
-	@echo "Auditing dependencies..."
+	@echo "🔎 Auditing dependencies..."
 	@uv run pip-audit
 
 docker:
-	@echo "Building docker image...."
+	@echo "🐳 Building docker image...."
 	@docker build -t {{ project_name }} .
 
 docker_compose:
-	@echo "Starting Containers..."
+	@echo "🛳️ Starting Containers..."
 	@docker compose up
 
 stubs:
-    @echo "Creating stubs..."
+    @echo "📝 Creating stubs..."
 	@uv run pyright --createstub lib_a
