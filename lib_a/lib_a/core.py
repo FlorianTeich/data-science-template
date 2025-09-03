@@ -1,7 +1,7 @@
 """Core functionality for lib_a package."""
 
 
-def hello_world():
+def hello_world() -> str:
     """A simple hello world function.
 
     Returns:
