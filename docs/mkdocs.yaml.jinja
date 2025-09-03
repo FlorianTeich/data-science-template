@@ -3,19 +3,19 @@ site_name: {{ project_name }}
 site_author: {{ author }}
 
 plugins:
-- search
-- mkdocs-jupyter
-- mkdocstrings:
-    default_handler: python
-    handlers:
-      python:
-        paths: ["../"]
-        options:
-          extra:
-            show_source: true
-            show_signature: true
-            show_root_toc_entry: true
-            separate_signature: false
+  - search
+  - mkdocs-jupyter
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          paths: ["../"]
+          options:
+            extra:
+              show_source: true
+              show_signature: true
+              show_root_toc_entry: true
+              separate_signature: false
 
 theme:
   name: material
