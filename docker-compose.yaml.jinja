@@ -29,7 +29,7 @@ services:
       - '127.0.0.1:8000:8000'
     networks:
       - appnet
-    command: uv run main.py
+    command: uv run {{ project_name }}/main.py
 
 networks:
   appnet:
