@@ -24,3 +24,37 @@ author:
 mail_address:
   type: str
   help: What is the author's email address?
+
+license:
+  type: str
+  help: "Choose a license (leave blank for none)"
+  choices:
+    - mit
+    - apache-2.0
+    - ""
+  default: ""
+
+changelog:
+  type: bool
+  help: "Do you want to include a changelog?"
+  default: false
+
+citation:
+  type: bool
+  help: "Do you want to include a citation file?"
+  default: false
+
+codeofconduct:
+  type: bool
+  help: "Do you want to include a Code of Conduct file?"
+  default: false
+
+contribution:
+  type: bool
+  help: "Do you want to include a contribution file?"
+  default: false
+
+security:
+  type: bool
+  help: "Do you want to include a security policy file?"
+  default: false
