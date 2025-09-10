@@ -34,6 +34,11 @@ license:
     - ""
   default: ""
 
+bug_report:
+  type: bool
+  help: "Do you want to include a bug report template?"
+  default: true
+
 changelog:
   type: bool
   help: "Do you want to include a changelog?"
@@ -57,4 +62,14 @@ contribution:
 security:
   type: bool
   help: "Do you want to include a security policy file?"
+  default: false
+
+dataset_card:
+  type: bool
+  help: "Do you want to include a dataset card?"
+  default: false
+
+model_card:
+  type: bool
+  help: "Do you want to include a model card?"
   default: false
