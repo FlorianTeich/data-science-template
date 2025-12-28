@@ -2,7 +2,7 @@
 
 tests:
 	@echo "🧪 Running tests..."
-	@uv run pytest tests
+	@uv run pytest
 
 mutations:
 	@echo "🧬 Running mutation tests..."
@@ -11,13 +11,13 @@ mutations:
 
 coverage:
 	@echo "📊 Running coverage..."
-	@uv run coverage run -m pytest tests
+	@uv run coverage run -m pytest
 	@uv run coverage html
 	@uv run coverage report -m
 
 lint:
 	@echo "🔍 Running linters..."
-	@uv run ruff check {{project_name}} tests
+	@uv run ruff check {{project_name}} tests $(LIB_DIR)
 	@if command -v prettier >/dev/null 2>&1; then \
 	    npx prettier . --check; \
 	else \
