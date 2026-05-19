@@ -111,5 +111,8 @@ lint.ignore = [
 ]
 lint.pydocstyle.convention = "google"
 
+[tool.uv]
+exclude-newer = "10 days"
+
 [tool.uv.sources]
 lib-a = { path = "./libs", editable = true }
